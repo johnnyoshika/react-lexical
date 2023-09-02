@@ -10,6 +10,8 @@ import OnChangePlugin from './OnChangePlugin';
 
 import './editor.css';
 import AddParagraph from './AddParagraph';
+import Save from './Save';
+import Load from './Load';
 
 const theme = {
   ltr: 'ltr',
@@ -55,6 +57,8 @@ const Editor = ({
         }
       />
       <AddParagraph />
+      <Save />
+      <Load />
     </LexicalComposer>
   );
 };

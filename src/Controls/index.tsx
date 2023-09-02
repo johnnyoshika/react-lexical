@@ -1,22 +1,37 @@
-import type { EditorState } from 'lexical';
+import { useEffect } from 'react';
+import { pubSub } from '../utils/pubSub';
+import type { LexicalEditor } from 'lexical';
 
-const Controls = ({
-  editorStateRef,
-}: {
-  editorStateRef: React.MutableRefObject<EditorState | undefined>;
-}) => {
-  const handleSave = () => {
-    localStorage.setItem(
-      'editorState',
-      JSON.stringify(editorStateRef.current ?? {}),
+const Controls = () => {
+  useEffect(() => {
+    const unsubscribe = pubSub.subscribe(
+      'save',
+      (editor: LexicalEditor) => {
+        localStorage.setItem(
+          'editorState',
+          JSON.stringify(editor.getEditorState()),
+        );
+      },
     );
-  };
 
-  return (
-    <div>
-      <button onClick={handleSave}>Save</button>
-    </div>
-  );
+    return unsubscribe;
+  }, []);
+
+  useEffect(() => {
+    const unsubscribe = pubSub.subscribe(
+      'load',
+      (editor: LexicalEditor) => {
+        const editorState = localStorage.getItem('editorState');
+
+        if (editorState)
+          editor.setEditorState(editor.parseEditorState(editorState));
+      },
+    );
+
+    return unsubscribe;
+  }, []);
+
+  return null;
 };
 
 export default Controls;

@@ -10,7 +10,7 @@ const App = () => {
   return (
     <>
       <Editor editorStateRef={editorStateRef} />
-      <Controls editorStateRef={editorStateRef} />
+      <Controls />
     </>
   );
 };
