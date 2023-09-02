@@ -1,5 +1,4 @@
-import { $getRoot, $getSelection, EditorState } from 'lexical';
-
+import type { EditorState } from 'lexical';
 import { LexicalComposer } from '@lexical/react/LexicalComposer';
 import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin';
 import { ContentEditable } from '@lexical/react/LexicalContentEditable';
@@ -10,6 +9,7 @@ import AutofocusPlugin from './AutofocusPlugin';
 import OnChangePlugin from './OnChangePlugin';
 
 import './editor.css';
+import AddParagraph from './AddParagraph';
 
 const theme = {
   ltr: 'ltr',
@@ -54,6 +54,7 @@ const Editor = ({
           (editorStateRef.current = editorState)
         }
       />
+      <AddParagraph />
     </LexicalComposer>
   );
 };
