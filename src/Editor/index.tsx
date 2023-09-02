@@ -58,17 +58,12 @@ const OnChangePlugin = ({
 const Editor = ({
   setEditorState,
 }: {
-  setEditorState: (value: string) => void;
+  setEditorState: (value: EditorState) => void;
 }) => {
   const initialConfig = {
     namespace: 'MyEditor',
     theme,
     onError,
-  };
-
-  const onChange = (editorState: EditorState) => {
-    const editorStateJson = editorState.toJSON();
-    setEditorState(JSON.stringify(editorStateJson, null, 2));
   };
 
   return (
@@ -85,7 +80,7 @@ const Editor = ({
         https://lexical.dev/docs/react/plugins#lexicalonchangeplugin
         https://github.com/facebook/lexical/issues/2587#issuecomment-1188427209
        */}
-      <OnChangePlugin onChange={onChange} />
+      <OnChangePlugin onChange={setEditorState} />
     </LexicalComposer>
   );
 };
