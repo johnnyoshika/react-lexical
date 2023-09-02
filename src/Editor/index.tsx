@@ -1,5 +1,5 @@
 import { $getRoot, $getSelection, EditorState } from 'lexical';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import { LexicalComposer } from '@lexical/react/LexicalComposer';
 import { PlainTextPlugin } from '@lexical/react/LexicalPlainTextPlugin';
@@ -35,11 +35,38 @@ const MyCustomAutoFocusPlugin = () => {
   return null;
 };
 
+const OnChangePlugin = ({
+  onChange,
+}: {
+  onChange: (editor: EditorState) => void;
+}) => {
+  const [editor] = useLexicalComposerContext();
+
+  useEffect(() => {
+    const unsubscribe = editor.registerUpdateListener(
+      ({ editorState }) => {
+        onChange(editorState);
+      },
+    );
+
+    return unsubscribe;
+  }, [editor, onChange]);
+
+  return null;
+};
+
 const Editor = () => {
   const initialConfig = {
     namespace: 'MyEditor',
     theme,
     onError,
+  };
+
+  const [editorState, setEditorState] = useState<string>();
+
+  const onChange = (editorState: EditorState) => {
+    const editorStateJson = editorState.toJSON();
+    setEditorState(JSON.stringify(editorStateJson, null, 2));
   };
 
   return (
@@ -51,6 +78,12 @@ const Editor = () => {
       />
       <HistoryPlugin />
       <MyCustomAutoFocusPlugin />
+      {/*
+        Better to use the official LexicalOnChangePlugin:
+        https://lexical.dev/docs/react/plugins#lexicalonchangeplugin
+        https://github.com/facebook/lexical/issues/2587#issuecomment-1188427209
+       */}
+      <OnChangePlugin onChange={onChange} />
     </LexicalComposer>
   );
 };
