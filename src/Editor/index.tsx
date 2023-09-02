@@ -1,7 +1,7 @@
 import { $getRoot, $getSelection, EditorState } from 'lexical';
 
 import { LexicalComposer } from '@lexical/react/LexicalComposer';
-import { PlainTextPlugin } from '@lexical/react/LexicalPlainTextPlugin';
+import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin';
 import { ContentEditable } from '@lexical/react/LexicalContentEditable';
 import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin';
 // import { OnChangePlugin } from '@lexical/react/LexicalOnChangePlugin';
@@ -37,7 +37,7 @@ const Editor = ({
 
   return (
     <LexicalComposer initialConfig={initialConfig}>
-      <PlainTextPlugin
+      <RichTextPlugin
         contentEditable={<ContentEditable />}
         placeholder={<div>Enter some text...</div>}
         ErrorBoundary={LexicalErrorBoundary}
