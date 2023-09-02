@@ -55,14 +55,16 @@ const OnChangePlugin = ({
   return null;
 };
 
-const Editor = () => {
+const Editor = ({
+  setEditorState,
+}: {
+  setEditorState: (value: string) => void;
+}) => {
   const initialConfig = {
     namespace: 'MyEditor',
     theme,
     onError,
   };
-
-  const [editorState, setEditorState] = useState<string>();
 
   const onChange = (editorState: EditorState) => {
     const editorStateJson = editorState.toJSON();
