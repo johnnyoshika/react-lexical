@@ -9,8 +9,12 @@ import LexicalErrorBoundary from '@lexical/react/LexicalErrorBoundary';
 import AutofocusPlugin from './AutofocusPlugin';
 import OnChangePlugin from './OnChangePlugin';
 
+import './editor.css';
+
 const theme = {
-  // Theme styling goes here
+  ltr: 'ltr',
+  rtl: 'rtl',
+  paragraph: 'editor-paragraph',
 };
 
 // Catch any errors that occur during Lexical updates and log them
