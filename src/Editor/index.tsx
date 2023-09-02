@@ -25,9 +25,9 @@ function onError(error: any) {
 }
 
 const Editor = ({
-  setEditorState,
+  editorStateRef,
 }: {
-  setEditorState: (value: EditorState) => void;
+  editorStateRef: React.MutableRefObject<EditorState | undefined>;
 }) => {
   const initialConfig = {
     namespace: 'MyEditor',
@@ -49,7 +49,11 @@ const Editor = ({
         https://lexical.dev/docs/react/plugins#lexicalonchangeplugin
         https://github.com/facebook/lexical/issues/2587#issuecomment-1188427209
        */}
-      <OnChangePlugin onChange={setEditorState} />
+      <OnChangePlugin
+        onChange={editorState =>
+          (editorStateRef.current = editorState)
+        }
+      />
     </LexicalComposer>
   );
 };

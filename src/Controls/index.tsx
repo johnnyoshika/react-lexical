@@ -1,18 +1,20 @@
 import type { EditorState } from 'lexical';
 
-const Controls = ({ editorState }: { editorState?: EditorState }) => {
+const Controls = ({
+  editorStateRef,
+}: {
+  editorStateRef: React.MutableRefObject<EditorState | undefined>;
+}) => {
   const handleSave = () => {
-    localStorage.setItem('editorState', JSON.stringify(editorState));
+    localStorage.setItem(
+      'editorState',
+      JSON.stringify(editorStateRef.current ?? {}),
+    );
   };
 
   return (
     <div>
-      <button
-        onClick={handleSave}
-        disabled={editorState === undefined}
-      >
-        Save
-      </button>
+      <button onClick={handleSave}>Save</button>
     </div>
   );
 };

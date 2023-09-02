@@ -1,15 +1,16 @@
-import { useState } from 'react';
+import { useRef } from 'react';
 import Editor from './Editor';
 import Controls from './Controls';
 import type { EditorState } from 'lexical';
 
 const App = () => {
-  const [editorState, setEditorState] = useState<EditorState>();
+  // Use ref instead of state to prevent excessive re-renders of <Editor> every time editor state changes
+  const editorStateRef = useRef<EditorState>();
 
   return (
     <>
-      <Editor setEditorState={setEditorState} />
-      <Controls editorState={editorState} />
+      <Editor editorStateRef={editorStateRef} />
+      <Controls editorStateRef={editorStateRef} />
     </>
   );
 };
