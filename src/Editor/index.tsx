@@ -17,6 +17,7 @@ import Save from './Save';
 import Load from './Load';
 import HtmlOut from './HtmlOut';
 import HtmlIn from './HtmlIn';
+import ChangeBackgroundCommand from './ChangeBackgroundCommand';
 
 const theme = {
   ltr: 'ltr',
@@ -64,6 +65,7 @@ const Editor = ({
         }
       />
       <AddParagraph />
+      <ChangeBackgroundCommand />
       <Save />
       <Load />
       <HtmlOut />
