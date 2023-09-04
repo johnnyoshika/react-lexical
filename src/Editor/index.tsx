@@ -5,7 +5,6 @@ import {
   LexicalComposer,
 } from '@lexical/react/LexicalComposer';
 import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin';
-import { ContentEditable } from '@lexical/react/LexicalContentEditable';
 import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin';
 // import { OnChangePlugin } from '@lexical/react/LexicalOnChangePlugin';
 import LexicalErrorBoundary from '@lexical/react/LexicalErrorBoundary';
@@ -17,6 +16,8 @@ import Load from './controls/Load';
 import HtmlOut from './controls/HtmlOut';
 import HtmlIn from './controls/HtmlIn';
 import ChangeBackgroundCommand from './commands/ChangeBackgroundCommand';
+import { MuiContentEditable, placeHolderSx } from './styles';
+import { Box } from '@mui/material';
 
 const theme = {
   ltr: 'ltr',
@@ -46,29 +47,33 @@ const Editor = ({
 
   return (
     <LexicalComposer initialConfig={initialConfig}>
-      <RichTextPlugin
-        contentEditable={<ContentEditable />}
-        placeholder={<div>Enter some text...</div>}
-        ErrorBoundary={LexicalErrorBoundary}
-      />
-      <HistoryPlugin />
-      <AutofocusPlugin />
-      {/*
+      <Box sx={{ position: 'relative', background: 'white' }}>
+        <RichTextPlugin
+          contentEditable={<MuiContentEditable />}
+          placeholder={
+            <Box sx={placeHolderSx}>Enter some text...</Box>
+          } // Using placeHolderSx together with MuiContentEditable
+          ErrorBoundary={LexicalErrorBoundary}
+        />
+        <HistoryPlugin />
+        <AutofocusPlugin />
+        {/*
         Better to use the official LexicalOnChangePlugin:
         https://lexical.dev/docs/react/plugins#lexicalonchangeplugin
         https://github.com/facebook/lexical/issues/2587#issuecomment-1188427209
        */}
-      <OnChangePlugin
-        onChange={editorState =>
-          (editorStateRef.current = editorState)
-        }
-      />
-      <AddParagraph />
-      <ChangeBackgroundCommand />
-      <Save />
-      <Load />
-      <HtmlOut />
-      <HtmlIn />
+        <OnChangePlugin
+          onChange={editorState =>
+            (editorStateRef.current = editorState)
+          }
+        />
+        <AddParagraph />
+        <ChangeBackgroundCommand />
+        <Save />
+        <Load />
+        <HtmlOut />
+        <HtmlIn />
+      </Box>
     </LexicalComposer>
   );
 };
