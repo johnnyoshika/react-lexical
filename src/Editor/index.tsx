@@ -9,14 +9,14 @@ import { ContentEditable } from '@lexical/react/LexicalContentEditable';
 import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin';
 // import { OnChangePlugin } from '@lexical/react/LexicalOnChangePlugin';
 import LexicalErrorBoundary from '@lexical/react/LexicalErrorBoundary';
-import AutofocusPlugin from './AutofocusPlugin';
-import OnChangePlugin from './OnChangePlugin';
-import AddParagraph from './AddParagraph';
-import Save from './Save';
-import Load from './Load';
-import HtmlOut from './HtmlOut';
-import HtmlIn from './HtmlIn';
-import ChangeBackgroundCommand from './ChangeBackgroundCommand';
+import AutofocusPlugin from './plugins/AutofocusPlugin';
+import OnChangePlugin from './plugins/OnChangePlugin';
+import AddParagraph from './controls/AddParagraph';
+import Save from './controls/Save';
+import Load from './controls/Load';
+import HtmlOut from './controls/HtmlOut';
+import HtmlIn from './controls/HtmlIn';
+import ChangeBackgroundCommand from './commands/ChangeBackgroundCommand';
 
 const theme = {
   ltr: 'ltr',

@@ -1,5 +1,5 @@
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
-import { pubSub } from '../../utils/pubSub';
+import { pubSub } from '../../../utils/pubSub';
 
 const Load = () => {
   const [editor] = useLexicalComposerContext();
