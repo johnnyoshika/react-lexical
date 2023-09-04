@@ -12,6 +12,8 @@ import './editor.css';
 import AddParagraph from './AddParagraph';
 import Save from './Save';
 import Load from './Load';
+import HtmlOut from './HtmlOut';
+import HtmlIn from './HtmlIn';
 
 const theme = {
   ltr: 'ltr',
@@ -59,6 +61,8 @@ const Editor = ({
       <AddParagraph />
       <Save />
       <Load />
+      <HtmlOut />
+      <HtmlIn />
     </LexicalComposer>
   );
 };
