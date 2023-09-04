@@ -1,3 +1,4 @@
+import './editor.css';
 import type { EditorState } from 'lexical';
 import {
   InitialConfigType,
@@ -10,8 +11,6 @@ import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin';
 import LexicalErrorBoundary from '@lexical/react/LexicalErrorBoundary';
 import AutofocusPlugin from './AutofocusPlugin';
 import OnChangePlugin from './OnChangePlugin';
-
-import './editor.css';
 import AddParagraph from './AddParagraph';
 import Save from './Save';
 import Load from './Load';
