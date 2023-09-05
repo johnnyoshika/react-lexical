@@ -11,6 +11,9 @@ const useOnClickListener = () => {
 
     if (e === eventTypes.formatItalic)
       editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'italic');
+
+    if (e === eventTypes.formatUnderline)
+      editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'underline');
   };
 
   return { onClick };
