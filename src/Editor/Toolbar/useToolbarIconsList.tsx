@@ -76,7 +76,7 @@ const useIconsList = () => {
   );
 
   const [editor] = useLexicalComposerContext();
-  const [activeEditor, setActiveEditor] = useState(editor);
+  const [activeEditor, setActiveEditor] = useState(editor); // Borrowed from lexical-playgroun source code: Without activeEditor, icon won't activate when pressed when no text is selected
 
   const updateToolbar = useCallback(() => {
     const selection = $getSelection();
@@ -128,6 +128,15 @@ const useIconsList = () => {
       COMMAND_PRIORITY_CRITICAL,
     );
   }, [editor, updateToolbar]);
+
+  useEffect(() => {
+    // Borrowed from lexical-playgroun source code: Without this, icon won't activate when pressed when no text is selected
+    return activeEditor.registerUpdateListener(({ editorState }) => {
+      editorState.read(() => {
+        updateToolbar();
+      });
+    });
+  }, [updateToolbar, activeEditor, editor]);
 
   return { icons };
 };
