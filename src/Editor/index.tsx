@@ -18,6 +18,7 @@ import HtmlIn from './controls/HtmlIn';
 import ChangeBackgroundCommand from './commands/ChangeBackgroundCommand';
 import { MuiContentEditable, placeHolderSx } from './styles';
 import { Box } from '@mui/material';
+import Toolbar from './Toolbar';
 
 const theme = {
   ltr: 'ltr',
@@ -47,6 +48,7 @@ const Editor = ({
 
   return (
     <LexicalComposer initialConfig={initialConfig}>
+      <Toolbar />
       <Box sx={{ position: 'relative', background: 'white' }}>
         <RichTextPlugin
           contentEditable={<MuiContentEditable />}
