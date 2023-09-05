@@ -11,9 +11,12 @@ import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext
 import {
   $getSelection,
   $isRangeSelection,
+  CAN_REDO_COMMAND,
+  CAN_UNDO_COMMAND,
   COMMAND_PRIORITY_CRITICAL,
   SELECTION_CHANGE_COMMAND,
 } from 'lexical';
+import { mergeRegister } from '@lexical/utils';
 
 export const eventTypes = {
   formatUndo: 'formatUndo',
@@ -130,12 +133,46 @@ const useIconsList = () => {
   }, [editor, updateToolbar]);
 
   useEffect(() => {
-    // Borrowed from lexical-playgroun source code: Without this, icon won't activate when pressed when no text is selected
-    return activeEditor.registerUpdateListener(({ editorState }) => {
-      editorState.read(() => {
-        updateToolbar();
-      });
-    });
+    return mergeRegister(
+      // Borrowed from lexical-playgroun source code: Without this, icon won't activate when pressed when no text is selected
+      activeEditor.registerUpdateListener(({ editorState }) => {
+        editorState.read(() => {
+          updateToolbar();
+        });
+      }),
+      activeEditor.registerCommand<boolean>(
+        CAN_UNDO_COMMAND,
+        payload => {
+          setIcons(icons =>
+            icons.map(i => ({
+              ...i,
+              active:
+                i.event === eventTypes.formatUndo
+                  ? payload
+                  : i.active,
+            })),
+          );
+          return false;
+        },
+        COMMAND_PRIORITY_CRITICAL,
+      ),
+      activeEditor.registerCommand<boolean>(
+        CAN_REDO_COMMAND,
+        payload => {
+          setIcons(icons =>
+            icons.map(i => ({
+              ...i,
+              active:
+                i.event === eventTypes.formatRedo
+                  ? payload
+                  : i.active,
+            })),
+          );
+          return false;
+        },
+        COMMAND_PRIORITY_CRITICAL,
+      ),
+    );
   }, [updateToolbar, activeEditor, editor]);
 
   return { icons };
