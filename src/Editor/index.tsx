@@ -19,12 +19,7 @@ import ChangeBackgroundCommand from './commands/ChangeBackgroundCommand';
 import { MuiContentEditable, placeHolderSx } from './styles';
 import { Box } from '@mui/material';
 import Toolbar from './Toolbar';
-
-const theme = {
-  ltr: 'ltr',
-  rtl: 'rtl',
-  paragraph: 'editor-paragraph',
-};
+import theme from './theme';
 
 // Catch any errors that occur during Lexical updates and log them
 // or throw them as needed. If you don't throw them, Lexical will
