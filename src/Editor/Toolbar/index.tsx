@@ -1,15 +1,21 @@
-import { Grid } from '@mui/material';
-import iconsList from './toolbarIconsList';
+import { Grid, IconButton } from '@mui/material';
 import useOnClickListener from './useOnClickListener';
+import useToolbarIconsList from './useToolbarIconsList';
 
 const Toolbar = () => {
   const { onClick } = useOnClickListener();
+  const { icons } = useToolbarIconsList();
 
   return (
     <Grid container sx={{ background: 'white', p: 1 }}>
-      {iconsList.map(plugin => (
-        <Grid item key={plugin.id} mr={2}>
-          <plugin.Icon onClick={() => onClick(plugin.event)} />
+      {icons.map(i => (
+        <Grid item key={i.id} mr={2}>
+          <IconButton
+            onClick={() => onClick(i.event)}
+            color={i.active ? 'info' : 'default'}
+          >
+            <i.Icon />
+          </IconButton>
         </Grid>
       ))}
     </Grid>
