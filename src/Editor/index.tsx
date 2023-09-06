@@ -20,7 +20,6 @@ import { MuiContentEditable, placeHolderSx } from './styles';
 import { Box } from '@mui/material';
 import Toolbar from './Toolbar';
 import theme from './theme';
-import { TreeView } from '@lexical/react/LexicalTreeView';
 import TreeViewPlugin from './plugins/TreeViewPlugin';
 import MutationPlugin from './plugins/MutationPlugin';
 
