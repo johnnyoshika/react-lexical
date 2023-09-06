@@ -22,6 +22,8 @@ import Toolbar from './Toolbar';
 import theme from './theme';
 import TreeViewPlugin from './plugins/TreeViewPlugin';
 import MutationPlugin from './plugins/MutationPlugin';
+import EmojiPlugin from './plugins/EmojiPlugin';
+import { EmojiNode } from './nodes/EmojiNode';
 
 // Catch any errors that occur during Lexical updates and log them
 // or throw them as needed. If you don't throw them, Lexical will
@@ -41,6 +43,7 @@ const Editor = ({
     onError,
     // editorState:
     //   '{"root":{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"hello world!!!","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}',
+    nodes: [EmojiNode],
   } satisfies InitialConfigType;
 
   return (
@@ -55,6 +58,7 @@ const Editor = ({
           ErrorBoundary={LexicalErrorBoundary}
         />
         <HistoryPlugin />
+        <EmojiPlugin />
         <AutofocusPlugin />
         {/*
         Better to use the official LexicalOnChangePlugin:
