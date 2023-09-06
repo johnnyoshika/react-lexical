@@ -22,6 +22,7 @@ import Toolbar from './Toolbar';
 import theme from './theme';
 import { TreeView } from '@lexical/react/LexicalTreeView';
 import TreeViewPlugin from './plugins/TreeViewPlugin';
+import MutationPlugin from './plugins/MutationPlugin';
 
 // Catch any errors that occur during Lexical updates and log them
 // or throw them as needed. If you don't throw them, Lexical will
@@ -66,6 +67,7 @@ const Editor = ({
             (editorStateRef.current = editorState)
           }
         />
+        <MutationPlugin />
         <AddParagraph />
         <ChangeBackgroundCommand />
         <Save />
