@@ -20,6 +20,8 @@ import { MuiContentEditable, placeHolderSx } from './styles';
 import { Box } from '@mui/material';
 import Toolbar from './Toolbar';
 import theme from './theme';
+import { TreeView } from '@lexical/react/LexicalTreeView';
+import TreeViewPlugin from './plugins/TreeViewPlugin';
 
 // Catch any errors that occur during Lexical updates and log them
 // or throw them as needed. If you don't throw them, Lexical will
@@ -71,6 +73,7 @@ const Editor = ({
         <HtmlOut />
         <HtmlIn />
       </Box>
+      <TreeViewPlugin />
     </LexicalComposer>
   );
 };
